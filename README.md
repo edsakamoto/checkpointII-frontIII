@@ -28,7 +28,7 @@ cd CTD-FE3-Checkpoint2-Template
 git remove rm origin
 
 # Adicione seu projeto a sua conta do github, ajuste o link para seu nome de usuário e repositório
-git remote add origin https://github.com/<nomedousuario>/<nomedoprojeto>
+git remote add origin https://github.com/edsakamoto/checkpointII-frontIII
 
 # Envie o repositório para o github
 git push -u origin main
