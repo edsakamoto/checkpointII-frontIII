@@ -30,7 +30,7 @@ import Detail from "./Routes/Detail";
     element:<Login />
   },
   {
-    path: '/detail',
+    path: '/dentist/:id',
     element:<Detail />
   }
 ])
