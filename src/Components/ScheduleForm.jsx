@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./ScheduleForm.module.css";
 
-const ScheduleForm = () => {
+const ScheduleForm = (props) => {
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
     //e pacientes e carregar os dados em 2 estados diferentes

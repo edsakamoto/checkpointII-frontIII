@@ -1,6 +1,6 @@
 import styles from "./Form.module.css";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const handleSubmit = (e) => {
     //Nesse handlesubmit você deverá usar o preventDefault,
     //enviar os dados do formulário e enviá-los no corpo da requisição 
