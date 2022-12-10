@@ -16,7 +16,7 @@ import Detail from "./Routes/Detail";
 
  const appRouter = createBrowserRouter([
   {
-    path:'',
+    path:'',        
     element: <Home />  ,
     children:[
       {
