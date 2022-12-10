@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom";
 
 const DetailCard = () => {
 
-  const params = useParams(); //utilizado para obter o :id passado na rota que é o retorno da matricula da api do dentista
-  const [detalhes, setDetalhes] = useState([])
-  // console.log(params.id)
+  const params = useParams(); //utilizado para obter o :id passado na rota que é o retorno da matricula da api do dentista  
+  const [nomeDentista, setNomeDentista] = useState('')
+  const [sobrenomeDentista, setSobrenomeDentista] = useState('')
+  const [usuario, setUsuario] = useState('')
+  
 
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
@@ -15,18 +17,20 @@ const DetailCard = () => {
     fetch(`https://dhodonto.ctdprojetos.com.br/dentista?matricula=${params.id}`).then(
       response =>{
         response.json().then(
-          data =>{
-            setDetalhes(data)
+          data =>{            
+            setNomeDentista(data.nome)
+            setSobrenomeDentista(data.sobrenome)
+            setUsuario(data.usuario.username)
           }
         )
       }
     )
-  }, [params.id]);
+  },[params.id]);
   return (
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
     <>      
-      <h1>Detail about Dentist {`: ${detalhes.nome}`} </h1>
+      <h1>Detail about Dentist {`: ${nomeDentista}`} </h1>
       <section className="card col-sm-12 col-lg-6 container">
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
@@ -42,9 +46,9 @@ const DetailCard = () => {
           </div>
           <div className="col-sm-12 col-lg-6">
             <ul className="list-group">
-              <li className="list-group-item">Nome: {`${detalhes.nome}`}</li>
-              <li className="list-group-item">Sobrenome: {`${detalhes.sobrenome}`}</li>
-              <li className="list-group-item">Usuário: {`${detalhes.usuario.username}`}</li>
+              <li className="list-group-item">Nome: {`${nomeDentista}`}</li>
+              <li className="list-group-item">Sobrenome: {`${sobrenomeDentista}`}</li>              
+              <li className="list-group-item">Usuário: {`${usuario}`}</li>
             </ul>
             <div className="text-center">
               {/* //Na linha seguinte deverá ser feito um teste se a aplicação
