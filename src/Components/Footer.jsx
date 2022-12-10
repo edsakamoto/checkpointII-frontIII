@@ -1,6 +1,6 @@
 import styles from "./Footer.module.css";
 
-const Footer = (props) => {
+const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo(0, 0)
   }

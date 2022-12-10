@@ -1,6 +1,6 @@
 import styles from "./Card.module.css";
 
-const Card = (props) => {
+const Card = () => {
 
   return (
     <>
