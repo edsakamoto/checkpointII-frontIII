@@ -14,8 +14,15 @@ const Home = () => {
       <h1>Home</h1>
       <div className="card-grid container">
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
-    </>
+     </>
   );
 };
 

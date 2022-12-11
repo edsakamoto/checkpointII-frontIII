@@ -10,8 +10,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Routes/Login";
 import Detail from "./Routes/Detail";
 
-
-
  const root = ReactDOM.createRoot(document.getElementById("root"));
 
  const appRouter = createBrowserRouter([
