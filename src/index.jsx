@@ -8,7 +8,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import Login from "./Routes/Login";
 import Detail from "./Routes/Detail";
 import App from "./App";
-
+import { ThemeProvider } from "./hooks/useTheme"
 
 
  const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -39,9 +39,9 @@ import App from "./App";
 ])
 //Lembre-se de configurar suas rotas e seu contexto aqui
 root.render(
-  <React.StrictMode>    
-    
-    <RouterProvider router={appRouter} />        
-    
-  </React.StrictMode>
+    <React.StrictMode>    
+      <ThemeProvider>
+        <RouterProvider router={appRouter} />        
+      </ThemeProvider>
+    </React.StrictMode>
 );

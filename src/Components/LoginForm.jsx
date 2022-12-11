@@ -1,4 +1,5 @@
 import styles from "./Form.module.css";
+import { useTheme } from "../hooks/useTheme";
 
 const LoginForm = () => {
   const handleSubmit = (e) => {
@@ -10,13 +11,14 @@ const LoginForm = () => {
     //Com tudo ocorrendo corretamente, o usuário deve ser redirecionado a página principal,com react-router
     //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
   };
+  const { theme } = useTheme()
 
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
       <div
-        className={`text-center card container ${styles.card}`}
+        className={`text-center card container ${theme} ${styles.card}`}
       >
         <div className={`card-body ${styles.CardBody}`}>
           <form onSubmit={handleSubmit}>
