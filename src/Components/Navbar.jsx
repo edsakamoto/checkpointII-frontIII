@@ -1,8 +1,7 @@
 import styles from "./Navbar.module.css";
-import { Link, useSearchParams } from 'react-router-dom';
-//import { useState } from "react"
+import { Link } from 'react-router-dom';
 import { useTheme } from "../hooks/useTheme";
-import { useState } from "react";
+
 
 
 const Navbar = () => {
