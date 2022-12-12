@@ -15,7 +15,7 @@ const Navbar = () => {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm navbar- ${theme} bg- ${theme}`}
+        className={`navbar navbar-expand-sm navbar-${theme} bg-${theme}`}
         aria-label="Third navbar example"
       >
         <div className="container">
@@ -59,12 +59,15 @@ const Navbar = () => {
                  Lembre-se de usar um estado no contexto para fazer essa alteração.
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
-                <button onClick={() => changeTheme('dark')} className={`btn btn ${theme} ${styles.btnStyle}`}>
-                  ☀️ 🌙{" "}
+                <button onClick={() => changeTheme(theme === 'dark' ? 'light' : 'dark')} className={`btn btn-${theme} ${styles.btnStyle}`}>
+                  {/* ☀️ 🌙{" "} */}
+                  {theme === 'dark' ? '☀️' : '🌙'}
                 </button>
+                
+              
 
 
-                {console.log(localStorage.getItem('theme'))}
+                {/* {console.log(localStorage.getItem('theme'))} */}
 
 
                 {/* {if (localStorage.getItem('theme') === 'dark'){

@@ -24,7 +24,7 @@
   filter: brightness(0);
 }
 
-.iconsDark{
+.iconsdark{
   filter: brightness(0) invert(1);
 }
 
