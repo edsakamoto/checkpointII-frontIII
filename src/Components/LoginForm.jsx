@@ -1,7 +1,21 @@
 import styles from "./Form.module.css";
 import { useTheme } from "../hooks/useTheme";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+//import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLogged } from "../hooks/useLogged";
+
 
 const LoginForm = () => {
+  
+  const [userName, setUserName] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+  const [authToken, setAuthToken] = useState('')
+  const { handleAuth }  = useLogged()
+  
+
+  const navigation = useNavigate('')
+
   const handleSubmit = (e) => {
     //Nesse handlesubmit você deverá usar o preventDefault,
     //enviar os dados do formulário e enviá-los no corpo da requisição 
@@ -10,8 +24,51 @@ const LoginForm = () => {
     //no localstorage para ser usado em chamadas futuras
     //Com tudo ocorrendo corretamente, o usuário deve ser redirecionado a página principal,com react-router
     //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
+    //login teste: dentistaAdmin   pass: admin123
+    e.preventDefault();
+    
+    
+     const apiUrl = 'http://dhodonto.ctdprojetos.com.br/auth'
+
+    const requestHeaders = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'      
+    }
+
+    const requestBody = JSON.stringify({
+      // "username": "dentistaAdmin",//userName,
+      // "password": "admin123"//userPassword
+      username: userName,
+      password: userPassword
+    })
+
+    const requestConfig = {
+      method: 'POST',
+      headers: requestHeaders,
+      body: requestBody
+    }
+
+    fetch(`${apiUrl}`, requestConfig).then(
+      response => {
+        if(response.ok){
+          response.json().then(
+            data => {
+              localStorage.setItem('authToken', data.token)
+              setAuthToken(data.token)
+              alert('Login realizado com sucesso')
+              navigation('/home')              
+            }
+          )
+        } else { 
+          localStorage.removeItem('authToken')
+          setUserName('')
+          setUserPassword('')
+          alert ('usuario ou senha digitada está errada')}
+      }
+    )
+    
   };
-  const { theme } = useTheme()
+  const { theme } = useTheme()  
 
   return (
     <>
@@ -26,16 +83,22 @@ const LoginForm = () => {
               className={`form-control ${styles.inputSpacing}`}
               placeholder="Login"
               name="login"
+              value={userName}
+              onChange={event => setUserName(event.target.value)}
               required
+              
             />
             <input
               className={`form-control ${styles.inputSpacing}`}
               placeholder="Password"
               name="password"
               type="password"
+              value={userPassword}
+              onChange={event => setUserPassword(event.target.value)}
               required
+              
             />
-            <button className="btn btn-primary" type="submit">
+            <button onClick={() => handleAuth(localStorage.getItem('authToken'))} className="btn btn-primary" type="submit">
               Send
             </button>
           </form>

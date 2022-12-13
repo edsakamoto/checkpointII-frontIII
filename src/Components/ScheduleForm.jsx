@@ -14,6 +14,7 @@ const ScheduleForm = () => {
     //para a rota da api que marca a consulta
     //lembre-se que essa rota precisa de um Bearer Token para funcionar.
     //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
+    
   };
 
   const { theme } = useTheme()
@@ -66,7 +67,7 @@ const ScheduleForm = () => {
             {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
             <button
-              className={`btn btn ${theme} ${styles.button 
+              className={`btn btn-${theme} ${styles.button 
                 }`}
               type="submit"
             >

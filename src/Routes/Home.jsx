@@ -30,7 +30,9 @@ const Home = () => {
         {
           dentistas.map(
             dentista => {
-              return  <Card  data={dentista}/>
+              return  <Card  
+                       key={dentista.matricula}
+                       data={dentista}/>
             }
           )
         }

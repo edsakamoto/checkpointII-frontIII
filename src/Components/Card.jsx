@@ -24,7 +24,7 @@ const Card = (props) => {
               {props.data.nome + ' ' + props.data.sobrenome}
             </h5>
           </Link>          
-          <p class="card-text">Usuário: {props.data.usuario.username}</p>
+          <p className="card-text">Usuário: {props.data.usuario.username}</p>
         </div>
       </div>
     </>

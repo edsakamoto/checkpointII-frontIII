@@ -9,39 +9,42 @@ import Login from "./Routes/Login";
 import Detail from "./Routes/Detail";
 import App from "./App";
 import { ThemeProvider } from "./hooks/useTheme"
+import { LoggedProvider } from "./hooks/useLogged"
 
 
- const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
- const appRouter = createBrowserRouter([
+const appRouter = createBrowserRouter([
   {
-    path:'',        
+    path: '',
     element: <App />,
-    children:[
+    children: [
       {
-        path:'',
+        path: '',
         element: <Navigate to='home' />
       },
       {
-        path:'home',
+        path: 'home',
         element: <Home />
       },
-        {
-          path: 'login',
-          element:<Login />
-        },
-        {
-          path: 'dentist/:id',
-          element:<Detail />
-        }    
-    ]    
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'dentist/:id',
+        element: <Detail />
+      }
+    ]
   }
 ])
 //Lembre-se de configurar suas rotas e seu contexto aqui
 root.render(
-    <React.StrictMode>    
-      <ThemeProvider>
-        <RouterProvider router={appRouter} />        
-      </ThemeProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <ThemeProvider>
+      <LoggedProvider>
+        <RouterProvider router={appRouter} />
+      </LoggedProvider>
+    </ThemeProvider>
+  </React.StrictMode>
 );
