@@ -12,15 +12,15 @@ const Footer = () => {
         <button className={`btn btn-danger ${styles.top}`} onClick={scrollToTop}>Voltar para o topo</button>
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar a class navbar-dark bg-dark ou navbar-light bg-light  */}
-        <div className={`navbar-${theme} bg-${theme} ${styles.footer}`}>
+        <div className={`navbar-${theme} bg-${theme} ${styles.footer} `}>
         {/* navbar-dark bg-dark Footer_footer__rVQKD */}
           <div className="container">
             <div className={`row`}>
-              <div className="col-sm-12 col-lg-6">
+              <div className={`col-sm-12 col-lg-6 icons${theme}`} >
                 {/* //Na linha seguinte deverá ser feito um teste se a aplicação
                 // está em dark mode e deverá utilizar o css correto */}
                 
-                <img className={`${styles.dhLogo}`} src="/images/DH.png" alt='DH-logo' />
+                <img className={`${styles.dhLogo} ${styles.iconsdark}`} src="/images/DH.png" alt='DH-logo' />
               </div>
               <div className={`col-sm-12 col-lg-6 ${styles.icons}`}>
                 <img src="/images/ico-facebook.png" alt="ícone do facebook" className={styles.icon} />
