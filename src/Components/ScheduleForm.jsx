@@ -11,7 +11,7 @@ const ScheduleForm = () => {
   const [matriculaDentista, setMatriculaDentista] = useState('')
   const [matriculaPaciente, setMatriculaPaciente] = useState('')
   
-  const { authToken } = useLogged()
+  const { authToken, deleteLocalStorage } = useLogged()
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
     //e pacientes e carregar os dados em 2 estados diferentes
@@ -74,9 +74,18 @@ const ScheduleForm = () => {
     fetch('http://dhodonto.ctdprojetos.com.br/consulta', requestConfig).then(
       response => {
         if(response.ok){
+
           alert('Consulta agendada com sucesso!')
+
         } else if (response.status === 400) {
-          alert('Erro ao enviar o agendamento. Possíveis causas: Tentativa agendar uma data anterior à Data atual')
+
+          alert('Erro ao enviar o agendamento. Possíveis causas: Tentativa de agendar uma data anterior à Data atual')
+
+        } else if (response.status === 403){
+
+          deleteLocalStorage //deleta o token que está guardada no localstorage, obrigando o usuario a realizar o login novamente
+          alert('Token Expirado, favor realizar o login novamente.')
+
         } else {
           alert('Erro código: ' + response.status)
         }
