@@ -53,8 +53,9 @@ const LoginForm = () => {
         if(response.ok){
           response.json().then(
             data => {
-              localStorage.setItem('authToken', data.token)
-              setAuthToken(data.token)
+              // localStorage.setItem('authToken', data.token)
+              // setAuthToken(data.token)
+              handleAuth(data.token)
               alert('Login realizado com sucesso')
               navigation('/home')              
             }

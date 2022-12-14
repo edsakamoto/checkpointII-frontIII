@@ -8,21 +8,7 @@ const Navbar = () => {
 
   // Utilização do Hook useTheme
   const { theme, changeTheme } = useTheme('dark')
-  const { authToken, islogged, deleteLocalStorage, handleAuth} = useLogged()
-  // console.log(islogged())
-  // console.log(authToken)
-  // function islogged(){
-  //   if(localStorage.getItem('authToken') === !null){
-  //     return true
-  //   } else { return false }
-  // }
-
-  // function deleteLocalStorage(token){
-  //   if(token === !null){
-  //     localStorage.removeItem('authToken')
-  //     alert('token apagado')
-  //   }    
-  // }
+  const { authToken, deleteLocalStorage} = useLogged()
 
   return (
     <header className="sticky-top">
@@ -65,13 +51,12 @@ const Navbar = () => {
                 ao formulário de login
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
-                {
-                  !islogged(authToken)
-                  ? <Link className="nav-link" to="/login"> Login</Link>
-                  : <button onClick={() => deleteLocalStorage(authToken)} className={`btn-${theme} btn ${styles.btnStyleLog}`}>Logout</button>
+                {                  
+                  authToken !== null
+                  ? (<button onClick={deleteLocalStorage} className={`btn-${theme} btn ${styles.btnStyleLog}`}>Logout</button>)
+                  : (<Link className="nav-link" to="/login"> Login</Link>)
                   
-                }
-                
+                }                
                 
               </li>
               <li className={`nav-item ${theme}`}>
