@@ -64,37 +64,9 @@ const Navbar = () => {
                  Lembre-se de usar um estado no contexto para fazer essa alteração.
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
-                <button onClick={() => changeTheme(theme === 'dark' ? 'light' : 'dark')} className={`btn btn-${theme} ${styles.btnStyle}`}>
-                  {/* ☀️ 🌙{" "} */}
+                <button onClick={() => changeTheme(theme === 'dark' ? 'light' : 'dark')} className={`btn btn-${theme} ${styles.btnStyle}`}>                 
                   {theme === 'dark' ? '☀️' : '🌙'}
                 </button>
-                
-              
-
-
-                {/* {console.log(localStorage.getItem('theme'))} */}
-
-
-                {/* {if (localStorage.getItem('theme') === 'dark'){
-                  <button onClick={() => changeTheme('light')} className={`btn btn ${theme} ${styles.btnStyle}`}>
-                    ☀️ 🌙{" "}
-                  </button>
-                }} */}
-
-
-
-                { /*BOTÕES ABAIXO FUNCIONANDO, MAS QUEREMOS O BOTÃO ACIMA*/}
-                {/* 
-                <div>
-                  <input type="radio" name="theme" id="light" checked={theme === 'light'} onChange={() => changeTheme('light')} />
-                  <label htmlFor="light">☀</label>
-                </div>
-
-                <div>
-                  <input type="radio" name="theme" id="dark" checked={theme === 'dark'} onChange={() => changeTheme('dark')} />
-                  <label htmlFor="dark">🌙</label>
-                </div> */}
-
               </li>
             </ul>
           </div>

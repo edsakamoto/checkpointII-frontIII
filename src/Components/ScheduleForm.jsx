@@ -83,7 +83,7 @@ const ScheduleForm = () => {
 
         } else if (response.status === 403){
 
-          deleteLocalStorage //deleta o token que está guardada no localstorage, obrigando o usuario a realizar o login novamente
+          deleteLocalStorage() //deleta o token que está guardada no localstorage, obrigando o usuario a realizar o login novamente
           alert('Token Expirado, favor realizar o login novamente.')
 
         } else {

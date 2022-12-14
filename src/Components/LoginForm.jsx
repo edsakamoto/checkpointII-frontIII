@@ -2,15 +2,13 @@ import styles from "./Form.module.css";
 import { useTheme } from "../hooks/useTheme";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useLogged } from "../hooks/useLogged";
 
 
 const LoginForm = () => {
   
   const [userName, setUserName] = useState('')
-  const [userPassword, setUserPassword] = useState('')
-  const [authToken, setAuthToken] = useState('')
+  const [userPassword, setUserPassword] = useState('') 
   const { handleAuth }  = useLogged()
   const [formularioErro, setFormularioErro] = useState(false)
 
@@ -35,9 +33,7 @@ const LoginForm = () => {
       'Content-Type': 'application/json'      
     }
 
-    const requestBody = JSON.stringify({
-      // "username": "dentistaAdmin",//userName,
-      // "password": "admin123"//userPassword
+    const requestBody = JSON.stringify({      
       username: userName,
       password: userPassword
     })
@@ -52,8 +48,8 @@ const LoginForm = () => {
     
       setFormularioErro(true)
     
-    } else if (userName.trim().length <= 6 || !userPassword.substring(0, 6).match(/\d/)){
-    //verifica se o username possui comprimento maior que 5 e também verifica se a senha possui algum número
+    } else if (userName.trim().length <= 6 || !userPassword.substring(0, 6).match(/\d/) || userPassword.length <= 4){
+    //verifica se o username possui comprimento maior que 5 e também verifica se a senha possui algum número ou senha com menos de 4 caracteres
       setFormularioErro(true)
     
     } else {
@@ -66,10 +62,8 @@ const LoginForm = () => {
       response => {
         if(response.ok){
           response.json().then(
-            data => {
-              // localStorage.setItem('authToken', data.token)
-              // setAuthToken(data.token)
-              handleAuth(data.token)
+            data => {              
+              handleAuth(data.token) //funcao global para armazenar o token, assim os outros componentes conseguem escutar o token qndo for atualizado ou removido
               alert('Login realizado com sucesso')
               navigation('/home')              
             }
