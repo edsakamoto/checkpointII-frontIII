@@ -12,7 +12,7 @@ const LoginForm = () => {
   const [userPassword, setUserPassword] = useState('')
   const [authToken, setAuthToken] = useState('')
   const { handleAuth }  = useLogged()
-  
+  const [formularioErro, setFormularioErro] = useState(false)
 
   const navigation = useNavigate('')
 
@@ -28,7 +28,7 @@ const LoginForm = () => {
     e.preventDefault();
     
     
-     const apiUrl = 'http://dhodonto.ctdprojetos.com.br/auth'
+    const apiUrl = 'http://dhodonto.ctdprojetos.com.br/auth'
 
     const requestHeaders = {
       Accept: 'application/json',
@@ -46,6 +46,20 @@ const LoginForm = () => {
       method: 'POST',
       headers: requestHeaders,
       body: requestBody
+    }
+
+    if(userName === '' || userPassword === ''){
+    
+      setFormularioErro(true)
+    
+    } else if (userName.trim().length <= 6 || !userPassword.substring(0, 6).match(/\d/)){
+    //verifica se o username possui comprimento maior que 5 e também verifica se a senha possui algum número
+      setFormularioErro(true)
+    
+    } else {
+    
+      setFormularioErro(false)
+    
     }
 
     fetch(`${apiUrl}`, requestConfig).then(
@@ -89,6 +103,7 @@ const LoginForm = () => {
               required
               
             />
+            
             <input
               className={`form-control ${styles.inputSpacing}`}
               placeholder="Password"
@@ -98,11 +113,17 @@ const LoginForm = () => {
               onChange={event => setUserPassword(event.target.value)}
               required
               
-            />
+            />            
             <button onClick={() => handleAuth(localStorage.getItem('authToken'))} className="btn btn-primary" type="submit">
               Send
             </button>
+            {
+              formularioErro 
+              ? (<span>**Verifique suas informações novamente**</span>) 
+              : null
+            }
           </form>
+          
         </div>
       </div>
     </>

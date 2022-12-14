@@ -13,3 +13,8 @@
 .inputSpacing+.inputSpacing{
   margin: 1rem 0;
 }
+span{
+  font-size: small;
+  font-weight: bold;
+  color: red;
+}
