@@ -26,7 +26,7 @@ const LoginForm = () => {
     e.preventDefault();
     
     
-    const apiUrl = 'http://dhodonto.ctdprojetos.com.br/auth'
+    const apiUrl = 'https://dhodonto.ctdprojetos.com.br/auth'
 
     const requestHeaders = {
       Accept: 'application/json',

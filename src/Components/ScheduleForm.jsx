@@ -15,7 +15,7 @@ const ScheduleForm = () => {
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
     //e pacientes e carregar os dados em 2 estados diferentes
-    fetch('http://dhodonto.ctdprojetos.com.br/dentista').then(
+    fetch('https://dhodonto.ctdprojetos.com.br/dentista').then(
       response => {
         response.json().then(
           data => {
@@ -71,7 +71,7 @@ const ScheduleForm = () => {
       body: requestBody
     }
 
-    fetch('http://dhodonto.ctdprojetos.com.br/consulta', requestConfig).then(
+    fetch('https://dhodonto.ctdprojetos.com.br/consulta', requestConfig).then(
       response => {
         if(response.ok){
 
