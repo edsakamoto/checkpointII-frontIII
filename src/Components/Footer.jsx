@@ -23,15 +23,22 @@ const Footer = () => {
                 
                 <img className={`${verificaTemaEscuro ? styles.iconsdark : ''} ${styles.icons} ${styles.dhLogo}`} src="/images/DH.png" alt='DH-logo' />
               </div>
+              
               <div className={`col-sm-12 col-lg-6 ${verificaTemaEscuro ? styles.iconsdark : ''} ${styles.icons}`}>
                 <img src="/images/ico-facebook.png" alt="ícone do facebook" className={styles.icon} />
                 <img src="/images/ico-instagram.png" alt="ícone do instagram" className={styles.icon} />
                 <img src="/images/ico-whatsapp.png" alt="ícone do whatsapp" className={styles.icon} />
                 <img src="/images/ico-tiktok.png" alt="ícone do tiktok" className={styles.icon} />
+                <h5>teste</h5>
+                <h5>teste</h5>  
               </div>
+              
             </div>
+            
           </div>
+          
         </div>
+        
       </div>
     </footer >
   )
