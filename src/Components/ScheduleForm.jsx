@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./ScheduleForm.module.css";
 import { useTheme } from "../hooks/useTheme";
 import { useLogged } from "../hooks/useLogged";
+import { useNavigate } from "react-router-dom";
 
 const ScheduleForm = () => {
 
@@ -10,8 +11,9 @@ const ScheduleForm = () => {
   const [dataHoraAgendadamento, setDataHoraAgendamento] = useState('')
   const [matriculaDentista, setMatriculaDentista] = useState('')
   const [matriculaPaciente, setMatriculaPaciente] = useState('')
-  
+  const navigation = useNavigate('')  
   const { authToken, deleteLocalStorage } = useLogged()
+
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
     //e pacientes e carregar os dados em 2 estados diferentes
@@ -55,11 +57,11 @@ const ScheduleForm = () => {
     const requestHeaders = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${authToken}`
+      'Authorization': `Bearer ${authToken}` //pegando da variavel que está dentro do useLogged
     }
 
     const requestBody = JSON.stringify({
-      dentista: { matricula: matriculaDentista }, //matriculaDentista
+      dentista: { matricula: matriculaDentista }, 
       paciente: { matricula: matriculaPaciente },
       dataHoraAgendamento: dataHoraAgendadamento
 
@@ -79,12 +81,13 @@ const ScheduleForm = () => {
 
         } else if (response.status === 400) {
 
-          alert('Erro ao enviar o agendamento. Possíveis causas: Tentativa de agendar uma data anterior à Data atual')
+          alert('Erro ao enviar o agendamento. Possíveis causas: Tentativa de agendar uma DATA anterior à Data atual')
 
         } else if (response.status === 403){
 
           deleteLocalStorage() //deleta o token que está guardada no localstorage, obrigando o usuario a realizar o login novamente
-          alert('Token Expirado, favor realizar o login novamente.')
+          alert('Token Expirado ou Usuário não está logado, favor realizar o login novamente.')
+          navigation('/login')
 
         } else {
           alert('Erro código: ' + response.status)
@@ -110,17 +113,12 @@ const ScheduleForm = () => {
                 Dentist
               </label>
               <select className="form-select" name="dentist" id="dentist" onChange={e => setMatriculaDentista(e.target.value)}>
-                {/*Aqui deve ser feito um map para listar todos os dentistas*/}
-                {/* <option key={'Matricula do dentista'} value={'Matricula do dentista'}>
-                  {`Nome Sobrenome`}
-                </option> */}
+                {/*Aqui deve ser feito um map para listar todos os dentistas*/}                
                 {
                   dentistasAPI.map(
                     dentistaAPI => {
                       return <option key={dentistaAPI.matricula}
-                                     value={dentistaAPI.matricula}
-                                     //onClick={(dentistaAPI) => setMatriculaDentista(dentistaAPI.matricula)}
-                                     //onChange={e => setMatriculaDentista(e.target.key)}
+                                     value={dentistaAPI.matricula}                                     
                                      > 
                                      {dentistaAPI.nome} {dentistaAPI.sobrenome}
                              </option>
@@ -134,16 +132,12 @@ const ScheduleForm = () => {
                 Patient
               </label>
               <select className="form-select" name="patient" id="patient" onChange={e => setMatriculaPaciente(e.target.value)}>
-                {/*Aqui deve ser feito um map para listar todos os pacientes*/}
-                {/* <option key={'Matricula do paciente'} value={'Matricula do paciente'}>
-                  {`Nome Sobrenome`}
-                </option> */}
+                {/*Aqui deve ser feito um map para listar todos os pacientes*/}                
                 {
                   pacientesAPI.map(
                     pacienteAPI => {
                       return <option key={pacienteAPI.matricula}
-                                     value={pacienteAPI.matricula}
-                                     //onClick={(pacienteAPI) => setMatriculaPaciente(pacienteAPI.matricula)}
+                                     value={pacienteAPI.matricula}                                     
                                      > 
                                      {pacienteAPI.nome} {pacienteAPI.sobrenome}                                     
                              </option>
@@ -176,8 +170,7 @@ const ScheduleForm = () => {
               type="submit"
               onSubmit={handleSubmit}
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              
+              data-bs-target="#exampleModal"              
             >
               Schedule
             </button>
